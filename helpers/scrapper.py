@@ -10,22 +10,28 @@ class OSOdooScrapper:
 		self.tree = html.fromstring(self.page.content)
 
 	def get_title(self):
-		title = self.tree.xpath('//*[@id="content-body"]/div/header/div[2]/div[2]/div/div[1]/div[1]/div/h1/text()')[0].strip()
+		title = self.tree.xpath('//*[@id="offer_active"]/div[2]/div[1]/div[1]/div[1]/h1/text()')[0].strip()
 		return title
 	
 	def get_price(self):
-		price = self.tree.xpath('//*[@id="content-body"]/div/header/div[2]/div[2]/div/div[2]/div/section/div/h3/text()')[1].strip()
+		price = self.tree.xpath('//*[@id="offeractions"]/div[1]/div[1]/strong/text()')[0].strip()
 		return price
 
-	def get_category(self):
-		category = self.tree.xpath('//*[@id="content-body"]/div/header/div[2]/div[2]/div/div[1]/div[1]/div/span[1]/a[2]/text()')[0].strip()
-		return category
+	# def get_category(self):
+	# 	category = self.tree.xpath('//*[@id="breadcrumbTop"]/tbody/tr/td[2]/ul/li[2]/a/span/text()')[0].strip()
+	# 	return category
 
 	def get_description(self):
-		description = self.tree.xpath('//*[@id="description-full"]/div/div[1]/div/p/text()')[0].strip()
+		description = self.tree.xpath('//*[@id="textContent"]/p/text()')[0].strip()
 		return description
 
+	def get_image_url(self):
+		imageURL = self.tree.xpath('//*[@id="offerdescription"]/div[1]/div/div/div/div/img')[0].get('src')
+		return imageURL
 
-scrapper = OSOdooScrapper('https://egypt.souq.com/eg-en/samsung-galaxy-j1-mini-prime-dual-sim-8gb-1gb-ram-3g-black-11711148/i/')
+# scrapper = OSOdooScrapper('https://olx.com.eg/ad/5-ID7HD6Z.html')
 
-print(scrapper.get_price())
+# print('title is ' + scrapper.get_title())
+# print('price is ' + scrapper.get_price())
+# print('image is ' + scrapper.get_image_url())
+# print('desc is ' + scrapper.get_description())
