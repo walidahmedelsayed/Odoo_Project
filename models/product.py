@@ -6,6 +6,7 @@ from scrapper import OSOdooScrapper
 
 class Product(models.Model):
     _name = 'project.products'
+
     url = fields.Char(string='product url')
     name = fields.Char(string='Product')
     category = fields.Char(string='Category')
@@ -40,6 +41,7 @@ class Product(models.Model):
         self.price = myScrapper.get_price()
         self.numberOfUpdates += 1
         self.description = myScrapper.get_description()
+
 
 
 
