@@ -1,1 +1,1 @@
-from . import product,cron
+from . import product,cron,scrapper
