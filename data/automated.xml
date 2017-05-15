@@ -9,8 +9,8 @@
             <field name="numbercall">-1</field>
             <field name="doal">1</field>
             <!--<field name="nextcall" >2016-12-31 23:59:59</field>-->
-            <field name="model" eval="'model.name '" />
-            <field name="function" eval="'method_name '" />
+            <field name="model" eval="'project.products'" />
+            <field name="function" eval="'automated_function'" />
             <field name="args" eval="" />
             <!--<field name="priority" eval="5" />-->
         </record>

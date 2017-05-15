@@ -1,6 +1,7 @@
 from odoo import models, fields
 from lxml import html
 import requests
+from scrapper import OSOdooScrapper
 
 
 class Product(models.Model):
@@ -8,8 +9,18 @@ class Product(models.Model):
     url = fields.Char(string='product url')
     name = fields.Char(string='Product')
     category = fields.Char(string='Category')
+    description = fields.Char(string='Description')
+    title = fields.Char(string='Title')
     price = fields.Float(string='Price')
     image = fields.Binary()
+    numberOfUpdates = fields.Integer('Number of updates')
+
+    def automated_function(self):
+        myScrapper = OSOdooScrapper(self.url)
+        self.title = myScrapper.get_title()
+        self.category = myScrapper.get_category()
+        self.price = myScrapper.get_price()
+        self.numberOfUpdates += 1
 
 
 

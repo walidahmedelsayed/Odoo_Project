@@ -8,9 +8,7 @@
                 <tree>
                     <field name="name"/>
                     <field name="url"/>
-                    <field name="category"/>
-                    <field name="price"/>
-                    <field name="image"/>
+                    <field name="numberOfUpdates"/>
                 </tree>
             </field>
         </record>
@@ -21,13 +19,22 @@
             <field name="model">project.products</field>
             <field name="arch" type="xml">
                 <form>
+                    <header>
+                        <button name="automated_function"
+                                type="object"
+                                string="Activate"
+
+                        />
+                    </header>
                     <sheet>
                         <group>
                             <field name="name"/>
                             <field name="url"/>
                             <field name="category"/>
+                            <field name="title"/>
                             <field name="price"/>
                             <field name="image"/>
+                            <field name="numberOfUpdates"/>
                         </group>
                     </sheet>
                 </form>
