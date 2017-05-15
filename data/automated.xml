@@ -1,5 +1,5 @@
 <odoo>
-    <data>
+    <data noupdate="1">
          <record id="automated" model="ir.cron">
             <field name="name">UpdateProduct</field>
             <field name="active" eval="True" />
