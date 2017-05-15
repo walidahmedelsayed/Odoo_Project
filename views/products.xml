@@ -20,7 +20,7 @@
             <field name="arch" type="xml">
                 <form>
                     <header>
-                        <button name="automated_function"
+                        <button name="get_data"
                                 type="object"
                                 string="Activate"
 
@@ -33,6 +33,7 @@
                             <field name="category"/>
                             <field name="title"/>
                             <field name="price"/>
+                            <field name="description"/>
                             <field name="image"/>
                             <field name="numberOfUpdates"/>
                         </group>

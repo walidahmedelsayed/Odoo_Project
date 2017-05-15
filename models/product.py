@@ -16,17 +16,37 @@ class Product(models.Model):
     numberOfUpdates = fields.Integer('Number of updates')
 
     def automated_function(self):
+        # objs = self.pool.get('project.products')
+        records = self.env['project.products'].search([])
+        print ("all", records)
+        for record in records:
+            print ("id :", record.id)
+            obj = self.env['project.products'].browse([record.id])
+            scrapper = OSOdooScrapper(obj.url)
+            title = scrapper.get_title()
+            category = scrapper.get_category()
+            price = scrapper.get_price()
+            # description = scrapper.get_description()
+            updates = obj.numberOfUpdates
+            print ("current num :", updates)
+            res = obj.write({"title": title, "category": category, "price": price,
+                             "numberOfUpdates": updates + 1})
+            print ("status :", res)
+
+    def get_data(self):
         myScrapper = OSOdooScrapper(self.url)
         self.title = myScrapper.get_title()
         self.category = myScrapper.get_category()
         self.price = myScrapper.get_price()
         self.numberOfUpdates += 1
+        self.description = myScrapper.get_description()
 
 
 
-    # page = requests.get('https://deals.souq.com/eg-en?a_source=google&a_medium=cpc&a_content=search_brand&a_term=souq&u_type=text&u_mt=e&u_title=A_Souq_EX&a_campaign=SN-EG-EN-Brand&gclid=CJizqJTF49MCFQWVGwodTvUB0Q')
-    # tree = html.fromstring(page.content)
-    # details = tree.xpath('//div/img/@src')
-    #
-    #
-    # print (details)
+
+        # page = requests.get('https://deals.souq.com/eg-en?a_source=google&a_medium=cpc&a_content=search_brand&a_term=souq&u_type=text&u_mt=e&u_title=A_Souq_EX&a_campaign=SN-EG-EN-Brand&gclid=CJizqJTF49MCFQWVGwodTvUB0Q')
+        # tree = html.fromstring(page.content)
+        # details = tree.xpath('//div/img/@src')
+        #
+        #
+        # print (details)
